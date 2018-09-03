@@ -1,0 +1,355 @@
+# !/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""说明：登录入口相关用例：在需要登录的页面进行登录，登录成功后返回该页面。"""
+import unittest
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from public.public import ShaBao
+from casedata.basicdata import data_login
+from time import sleep
+
+account = data_login["account"]
+password = data_login["password"]
+
+
+
+class DengLu(ShaBao):
+    # 未登录状态，首页-》消息中心，跳转到登录页面，登录后返回“首页”页面。
+    #@unittest.skip('暂不执行用例')
+    def test_001(self):
+        driver = self.driver
+        # 退出登录
+        self.logout()
+        # 点击“首页”。
+        self.shouye()
+        content1 = self.get_title()
+        # 点击“消息中心”。
+        self.xxzx()
+        # 登录操作
+        self.login(account, password)
+        content2 = self.get_title()
+        # 判断标题。
+        self.assertEqual(content2, content1, msg='功能异常')
+
+    # 未登录状态，首页-》待办事项提醒，跳转到登录页面，登录后返回“首页”页面。
+    #@unittest.skip('暂不执行用例')
+    def test_002(self):
+        driver = self.driver
+        # 退出登录
+        self.logout()
+        # 点击“首页”。
+        self.shouye()
+        content1 = self.get_title()
+        # 点击“待办事项提醒”。
+        self.dbsxtx()
+        # 登录操作
+        self.login(account, password)
+        content2 = self.get_title()
+        # 判断标题。
+        self.assertEqual(content2, content1, msg='功能异常')
+
+    # 未登录状态，首页-》商保理赔，跳转到登录页面，登录后返回“首页”页面。
+    #@unittest.skip('暂不执行用例')
+    def test_003(self):
+        driver = self.driver
+        # 退出登录
+        self.logout()
+        # 点击“首页”。
+        self.shouye()
+        content1 = self.get_title()
+        # 点击“商保理赔”。
+        self.sblp()
+        # 登录操作
+        self.login(account, password)
+        content2 = self.get_title()
+        # 判断标题。
+        self.assertEqual(content2, content1, msg='功能异常')
+
+    # 未登录状态，首页-》社保查询，跳转到登录页面，登录后返回“首页”页面。
+    #@unittest.skip('暂不执行用例')
+    def test_004(self):
+        driver = self.driver
+        # 退出登录
+        self.logout()
+        # 点击“首页”。
+        self.shouye()
+        content1 = self.get_title()
+        # 点击“社保查询”。
+        self.sbcx()
+        # 登录操作
+        self.login(account, password)
+        content2 = self.get_title()
+        # 判断标题。
+        self.assertEqual(content2, content1, msg='功能异常')
+
+    # 未登录状态，首页-》公积金查询，跳转到登录页面，登录后返回“首页”页面。
+    #@unittest.skip('暂不执行用例')
+    def test_005(self):
+        driver = self.driver
+        # 退出登录
+        self.logout()
+        # 点击“首页”。
+        self.shouye()
+        content1 = self.get_title()
+        # 点击“公积金查询”。
+        self.gjjcx()
+        # 登录操作
+        self.login(account, password)
+        content2 = self.get_title()
+        # 判断标题。
+        self.assertEqual(content2, content1, msg='功能异常')
+
+    # 未登录状态，助理-》商保理赔，跳转到登录页面，登录后返回“首页”页面。
+    #@unittest.skip('暂不执行用例')
+    def test_006(self):
+        driver = self.driver
+        # 退出登录
+        self.logout()
+        # 点击“助理”。
+        self.zhuli()
+        content1 = self.get_title()
+        # 点击“商保理赔”。
+        self.sblp()
+        # 登录操作
+        self.login(account, password)
+        content2 = self.get_title()
+        # 判断标题。
+        self.assertEqual(content2, content1, msg='功能异常')
+
+    # 未登录状态，助理-》社保查询，跳转到登录页面，登录后返回“助理”页面。
+    #@unittest.skip('暂不执行用例')
+    def test_007(self):
+        driver = self.driver
+        # 退出登录
+        self.logout()
+        # 点击“助理”。
+        self.zhuli()
+        content1 = self.get_title()
+        # 点击“社保查询”。
+        self.sbcx()
+        # 登录操作
+        self.login(account, password)
+        content2 = self.get_title()
+        # 判断标题。
+        self.assertEqual(content2, content1, msg='功能异常')
+
+    # 未登录状态，助理-》公积金查询，跳转到登录页面，登录后返回“助理”页面。
+    #@unittest.skip('暂不执行用例')
+    def test_008(self):
+        driver = self.driver
+        # 退出登录
+        self.logout()
+        # 点击“助理”。
+        self.zhuli()
+        content1 = self.get_title()
+        # 点击“公积金查询”。
+        self.gjjcx()
+        # 登录操作
+        self.login(account, password)
+        content2 = self.get_title()
+        # 判断标题。
+        self.assertEqual(content2, content1, msg='功能异常')
+
+    # 未登录状态，助理-》在线客服，跳转到登录页面，登录后返回“助理”页面。
+    #@unittest.skip('暂不执行用例')
+    def test_009(self):
+        driver = self.driver
+        # 退出登录
+        self.logout()
+        # 点击“助理”。
+        self.zhuli()
+        content1 = self.get_title()
+        # 点击“在线客服”。
+        self.zxkf()
+        # 登录操作
+        self.login(account, password)
+        content2 = self.get_title()
+        # 判断标题。
+        self.assertEqual(content2, content1, msg='功能异常')
+
+    # 未登录状态，助理-》常见问题-》联系在线客服，跳转到登录页面，登录后返回“常见问题”页面。
+    #@unittest.skip('暂不执行用例')
+    def test_010(self):
+        driver = self.driver
+        # 退出登录
+        self.logout()
+        # 点击“助理”。
+        self.zhuli()
+        # 点击“常见问题”。
+        self.cjwt()
+        content1 = self.get_title()
+        # 点击“联系在线客服”。
+        self.lxzxkf()
+        # 登录操作
+        self.login(account, password)
+        content2 = self.get_title()
+        # 判断标题。
+        self.assertEqual(content2, content1, msg='功能异常')
+
+    # 未登录状态，助理-》常见问题-》选择一条记录-》联系在线客服，跳转到登录页面，登录后返回“记录详情”页面。
+    #@unittest.skip('暂不执行用例')
+    def test_011(self):
+        driver = self.driver
+        # 退出登录
+        self.logout()
+        # 点击“助理”。
+        self.zhuli()
+        # 点击“常见问题”。
+        self.cjwt()
+        # 点击一条记录。
+        driver.find_element_by_id("com.seebon.shabaomanager:id/helper_title_tv").click()
+        content1 = self.get_title()
+        # 点击“联系在线客服”。
+        self.lxzxkf()
+        # 登录操作
+        self.login(account, password)
+        content2 = self.get_title()
+        # 判断标题。
+        self.assertEqual(content2, content1, msg='功能异常')
+
+    # 未登录状态，助理-》使用手册-》选择一条记录-》联系在线客服，跳转到登录页面，登录后返回“记录详情”页面。
+    #@unittest.skip('暂不执行用例')
+    def test_012(self):
+        driver = self.driver
+        # 退出登录
+        self.logout()
+        # 点击“助理”。
+        self.zhuli()
+        # 点击“使用手册”。
+        self.sysc()
+        # 点击一条导航记录/列表记录。
+        driver.find_element_by_id("com.seebon.shabaomanager:id/guide_hot_title_tv").click()
+        #driver.find_element_by_id("com.seebon.shabaomanager:id/helper_title_tv").click()
+        content1 = self.get_title()
+        # 点击“联系在线客服”。
+        self.lxzxkf()
+        # 登录操作
+        self.login(account, password)
+        content2 = self.get_title()
+        # 判断标题。
+        self.assertEqual(content2, content1, msg='功能异常')
+
+    # 未登录状态，助理-》政策查询-》选择一条记录-》联系在线客服，跳转到登录页面，登录后返回“记录详情”页面。
+    #@unittest.skip('暂不执行用例')
+    def test_013(self):
+        driver = self.driver
+        # 退出登录
+        self.logout()
+        # 点击“助理”。
+        self.zhuli()
+        # 点击“政策查询”。
+        self.zccx()
+        # 点击一条记录。
+        driver.find_element_by_id("com.seebon.shabaomanager:id/helper_title_tv").click()
+        content1 = self.get_title()
+        # 点击“联系在线客服”。
+        self.lxzxkf()
+        # 登录操作
+        self.login(account, password)
+        content2 = self.get_title()
+        # 判断标题。
+        self.assertEqual(content2, content1, msg='功能异常')
+
+    # 未登录状态，我的-》点击登录，跳转到登录页面，登录后返回“我的”页面。
+    #@unittest.skip('暂不执行用例')
+    def test_014(self):
+        driver = self.driver
+        # 退出登录
+        self.logout()
+        # 点击“我的”。
+        self.wode()
+        content1 = self.get_title()
+        # 点击“点击登录”。
+        self.grxx()
+        # 登录操作
+        self.login(account, password)
+        content2 = self.get_title()
+        # 判断标题。
+        self.assertEqual(content2, content1, msg='功能异常')
+
+    # 未登录状态，我的-》我的参保人，跳转到登录页面，登录后返回“我的”页面。
+    #@unittest.skip('暂不执行用例')
+    def test_015(self):
+        driver = self.driver
+        # 退出登录
+        self.logout()
+        # 点击“我的”。
+        self.wode()
+        content1 = self.get_title()
+        # 点击“我的参保人”。
+        self.wdcbr()
+        # 登录操作
+        self.login(account, password)
+        content2 = self.get_title()
+        # 判断标题。
+        self.assertEqual(content2, content1, msg='功能异常')
+
+    # 未登录状态，我的-》我的签署，跳转到登录页面，登录后返回“我的”页面。
+    #@unittest.skip('暂不执行用例')
+    def test_016(self):
+        driver = self.driver
+        # 退出登录
+        self.logout()
+        # 点击“我的”。
+        self.wode()
+        content1 = self.get_title()
+        # 点击“我的签署”。
+        self.wdqs()
+        # 登录操作
+        self.login(account, password)
+        content2 = self.get_title()
+        # 判断标题。
+        self.assertEqual(content2, content1, msg='功能异常')
+
+    # 未登录状态，我的-》联系客服，跳转到登录页面，登录后返回“我的”页面。
+    #@unittest.skip('暂不执行用例')
+    def test_017(self):
+        driver = self.driver
+        # 退出登录
+        self.logout()
+        # 点击“我的”。
+        self.wode()
+        content1 = self.get_title()
+        # 点击“联系客服”。
+        self.lxkf()
+        # 登录操作
+        self.login(account, password)
+        content2 = self.get_title()
+        # 判断标题。
+        self.assertEqual(content2, content1, msg='功能异常')
+
+    # 未登录状态，我的-》设置-》安全中心，跳转到登录页面，登录后返回“设置”页面。
+    #@unittest.skip('暂不执行用例')
+    def test_018(self):
+        driver = self.driver
+        # 退出登录
+        self.logout()
+        # 点击“我的”。
+        self.wode()
+        # 点击“设置”。
+        self.sz()
+        content1 = self.get_title()
+        # 点击“安全中心”。
+        self.aqzx()
+        # 登录操作
+        self.login(account, password)
+        content2 = self.get_title()
+        # 判断标题。
+        self.assertEqual(content2, content1, msg='功能异常')
+
+
+if __name__ == '__main__':
+    unittest.main()
+    print("bye")
+
+
+
+
+
+
+
+
+
+
+
