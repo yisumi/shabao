@@ -1,0 +1,378 @@
+# !/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""公共方法，以及driver的启动、初始化、结束。"""
+import unittest
+from appium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+
+class ShaBao(unittest.TestCase):
+    def setUp(self):
+        desired_caps = {
+            'platformName': 'Android',
+            'platformVersion': '5.0',
+            'deviceName': '1a61f2d6',
+            'autoAcceptAlerts': 'true',
+            # apk的包名
+            'appPackage': 'com.seebon.shabaomanager',
+            # apk的launcherActivity
+            'appActivity': 'com.seebon.shabaomanager.main.SplashActivity',
+            # 屏蔽系统输入法，使用appium提供的输入法
+            # 安装Unicode 输入法，即使用unicodeKeyboard的编码方式发送字符串，支持中文输入。默认值为 false。
+            'unicodeKeyboard': 'True',
+            # 启动appium的默认键盘，关闭手机的模拟键盘。
+            'resetKeyboard': 'True',
+            'noReset': 'True'
+        }
+        self.driver = webdriver.Remote('http://192.168.42.71:4723/wd/hub', desired_caps)
+
+    def tearDown(self):
+        print("test end")
+        self.driver.quit()
+
+    # 点击“返回”,选择城市页面，消息中心页面及其子页面，首页活动，资讯详情页面，常见问题列表及详情页面，
+    # 政策查询列表及详情页面，使用手册列表及详情页面，个人信息页面，设置及其子功能页面，
+    # ，，
+    def fanhui(self):
+        self.driver.find_element_by_accessibility_id("转到上一层级").click()
+
+    # 点击“返回”,常见问题搜索页面，政策查询搜索页面，
+    def fanhui_search(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/toolbar_search_back_iv").click()
+
+    # 点击“返回”,最新资讯页面
+    def fanhui_zixun(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/toolbar_back_img").click()
+
+    # 点击“取消”，启动app后弹出的更新页面
+    def quxiaogengxin(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/update_cancel_btn").click()
+
+    # 点击“首页”
+    def shouye(self):
+        WebDriverWait(self.driver, 10, poll_frequency=0.5).until(EC.presence_of_element_located((By.ID, "com.seebon.shabaomanager:id/tab_index_tv")))
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/tab_index_tv").click()
+
+    # 点击“城市”
+    def cs(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/toolbar_location").click()
+
+    # 点击“重新定位”
+    def cxdw(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/located_city_relocate").click()
+
+    # 点击“消息中心”
+    def xxzx(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/toolbar_msg_notice_imgview").click()
+
+    # 点击“待办事项”
+    def dbsx(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/msg_need_dealt_content").click()
+
+    # 点击“系统消息”
+    def xtxx(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/msg_system_content").click()
+
+    # 点击“精彩活动”
+    def jchd(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/msg_busi_content").click()
+
+    # 点击“首页广告”
+    def sygg(self):
+        self.driver.find_element_by_id("").click()
+
+    # 点击“待办事项提醒”
+    def dbsxtx(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/msg_dealt_notice_layout").click()
+
+    # 点击“首页活动”
+    def syhd(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/aciont_has_icon_layout").click()
+
+    # 点击“最新资讯”
+    def zxzx(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/msg_new_bar").click()
+
+    # 点击“全部”
+    def qb(self):
+        self.driver.find_element_by_name("全部").click()
+
+    # 点击“政策动态”
+    def zcdt(self):
+        self.driver.find_element_by_name("政策动态").click()
+
+    # 点击“沙包新闻”
+    def sbxw(self):
+        self.driver.find_element_by_name("沙包新闻").click()
+
+    # 点击“行业资讯”
+    def hyzx(self):
+        self.driver.find_element_by_name("行业资讯").click()
+
+    # 点击“助理”
+    def zhuli(self):
+        WebDriverWait(self.driver, 10, poll_frequency=0.5).until(EC.presence_of_element_located((By.ID, "com.seebon.shabaomanager:id/tab_assistant_tv")))
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/tab_assistant_tv").click()
+
+    # 点击“社保查询”
+    def sbcx(self):
+        self.driver.find_element_by_name("社保查询").click()
+
+    # 点击“公积金查询”
+    def gjjcx(self):
+        self.driver.find_element_by_name("公积金查询").click()
+
+    # 点击“商保理赔”
+    def sblp(self):
+        self.driver.find_element_by_name("商保理赔").click()
+
+    # 点击“社保计算器”
+    def sbjsq(self):
+        self.driver.find_element_by_name("社保计算器").click()
+
+    # 点击“个税计算器”
+    def gsjsq(self):
+        self.driver.find_element_by_name("个税计算器").click()
+
+    # 点击“常见问题”
+    def cjwt(self):
+        self.driver.find_element_by_name("常见问题").click()
+
+    # 点击“使用手册”
+    def sysc(self):
+        self.driver.find_element_by_name("使用手册").click()
+
+    # 点击“政策查询”
+    def zccx(self):
+        self.driver.find_element_by_name("政策查询").click()
+
+    # 点击“在线客服”
+    def zxkf(self):
+        self.driver.find_element_by_name("在线客服").click()
+
+    # 点击“联系在线客服”
+    def lxzxkf(self):
+        self.driver.find_element_by_name("联系在线客服").click()
+
+    # 点击“我的”
+    def wode(self):
+        WebDriverWait(self.driver, 10, poll_frequency=0.5).until(EC.presence_of_element_located((By.ID, "com.seebon.shabaomanager:id/tab_mine_tv")))
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/tab_mine_tv").click()
+
+    # 点击“个人信息”
+    def grxx(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/mine_goto_account_info_layout").click()
+
+    # 点击“注册账号”
+    def zczh(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/login_account_register_tv").click()
+
+    # 点击“忘记密码”
+    def wjmm(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/login_account_psw_forget_tv").click()
+
+    # 点击“沙包管家服务协议”
+    def sbgjfwxy(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/register_greement_tv").click()
+
+    # 点击“我的参保人”
+    def wdcbr(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/mine_insured_layout").click()
+
+    # 点击“查看更多信息”
+    def ckgdxx(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/mine_insured_lookup_more_tv").click()
+
+    # 点击“我的签署”
+    def wdqs(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/mine_signature_layout").click()
+
+    # 点击“待我签署”
+    def dwqs(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/mine_signature_for_me_layout").click()
+
+    # 点击“待他人签署”
+    def dtrqs(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/mine_signature_for_others_layout").click()
+
+    # 点击“已完成签署”
+    def ywcqs(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/mine_signature_complete_layout").click()
+
+    # 点击“联系客服”
+    def lxkf(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/mine_contact_custom_layout").click()
+
+    # 点击“微信公众号”
+    def wxgzh(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/online_wechat_layout").click()
+
+    # 点击“电话联系”
+    def dhlx(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/online_call_phone_layout").click()
+
+    # 点击“推荐给朋友”
+    def tjgpy(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/mine_share_us_layout").click()
+
+    # 点击“鼓励下我们”
+    def glxwm(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/account_incite_layout").click()
+
+    # 点击“设置”
+    def sz(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/mine_set_next_layout").click()
+
+    # 点击“安全中心”
+    def aqzx(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/account_setting_goto_security_center_activity").click()
+
+    # 点击“修改登录密码”。
+    def xgdlmm(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/setting_goto_modify_loginpsw_activity_layout").click()
+
+    # 点击“保存新密码”。
+    def bcxmm(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/btn_modify").click()
+
+    # 点击“新消息提醒”
+    def xxxtx(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/account_setting_goto_new_msg_notice_switch_activity").click()
+
+    # 点击“清除缓存”
+    def qchc(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/account_setting_clear_cache_layout").click()
+
+    # 点击“关于我们”
+    def gywm(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/goto_about_us_layout").click()
+
+    # 点击“意见反馈”
+    def yjfk(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/setting_goto_advice_feedback_activity").click()
+
+    # 点击“添加图片”。
+    def tjtp(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/feedback_camera_imgview").click()
+
+    # 点击“功能介绍”
+    def gnjs(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/goto_function_introduce_layout").click()
+
+    # 点击“退出登录”
+    def tcdl(self):
+        self.driver.find_element_by_id("com.seebon.shabaomanager:id/btn_logout").click()
+
+    def login(self, account, password):
+        # 登录页面，清除手机号输入框，输入手机号。
+        self.driver.find_element_by_id('com.seebon.shabaomanager:id/login_account_num_edittext').clear()
+        self.driver.find_element_by_id('com.seebon.shabaomanager:id/login_account_num_edittext').send_keys(account)
+        # 输入密码。
+        self.driver.find_element_by_id('com.seebon.shabaomanager:id/login_account_psw_edittext').send_keys(password)
+        # 点击“登录”。
+        self.driver.find_element_by_id('com.seebon.shabaomanager:id/btn_login').click()
+
+    def logout(self):
+        # 等待“我的”加载完成，并点击。
+        WebDriverWait(self.driver, 10, poll_frequency=0.5).until(EC.presence_of_element_located((By.ID, "com.seebon.shabaomanager:id/tab_mine_tv")))
+        self.wode()
+        # 点击“设置”。
+        self.sz()
+        try:
+            # 点击“退出登录”。
+            self.tcdl()
+        except:
+            pass
+        # 返回，返回到“我的”页面。
+        self.driver.press_keycode(4)
+
+    def get_title(self):
+        # 等待页面标题加载完成，然后获取页面标题。
+        WebDriverWait(self.driver, 10, poll_frequency=0.5).until(EC.presence_of_element_located((By.ID, "com.seebon.shabaomanager:id/toolbar_title")))
+        title_name = self.driver.find_element_by_id('com.seebon.shabaomanager:id/toolbar_title').get_attribute("name")
+        print(title_name)
+        return title_name
+
+    def get_company_name(self):
+        # 等待页面标题加载完成，然后获取页面标题。
+        WebDriverWait(self.driver, 10, poll_frequency=0.5).until(EC.presence_of_element_located((By.ID, "com.seebon.shabaomanager:id/mine_account_belongto_company")))
+        company_name = self.driver.find_element_by_id('com.seebon.shabaomanager:id/mine_account_belongto_company').get_attribute("name")
+        print(company_name)
+        return company_name
+
+    def gsjs(self, shuiqian, shebao, gongjijin, qizhengdian):
+        # 输入“税前工资”。
+        self.driver.find_element_by_xpath('//android.widget.ListView/android.view.View[1]/android.widget.EditText').send_keys(str(shuiqian))
+        # 输入“社保”。
+        self.driver.find_element_by_xpath('//android.widget.ListView/android.view.View[2]/android.widget.EditText').send_keys(str(shebao))
+        # 输入“公积金”。
+        self.driver.find_element_by_xpath('//android.widget.ListView/android.view.View[3]/android.widget.EditText').send_keys(str(gongjijin))
+        # 选择起征点。
+        if qizhengdian == 3500:
+            pass
+        else:
+            self.driver.find_element_by_xpath('//android.view.View[@content-desc="3500"]').click()
+        # 点击计算。
+        self.driver.find_element_by_accessibility_id("计算").click()
+        ynssde = shuiqian - shebao - gongjijin - qizhengdian
+        if ynssde <= 0:
+            # 获取totast："无需缴纳个税"
+            toast = "无需缴纳个税"
+            # 点击“重置”
+            self.driver.find_element_by_accessibility_id("重置").click()
+            # 点击“确定”
+            self.driver.find_element_by_accessibility_id("确定").click()
+            return toast
+        else:
+            # 等待“速算扣除数”加载完成。
+            WebDriverWait(self.driver, 10, poll_frequency=0.5).until(EC.presence_of_element_located((By.XPATH, '//android.view.View[@resource-id="result5"]')))
+            # 在计算结果页面，获取应纳税额、税后工资、应纳税所得额、税率、速算扣除数：
+            # result1、result2、result3、result4、result5
+            yingnse = self.driver.find_element_by_xpath('//android.view.View[@resource-id="result1"]').get_attribute("name")
+            shuih = self.driver.find_element_by_xpath('//android.view.View[@resource-id="result2"]').get_attribute("name")
+            yingnssde = self.driver.find_element_by_xpath('//android.view.View[@resource-id="result3"]').get_attribute("name")
+            shuil = self.driver.find_element_by_xpath('//android.view.View[@resource-id="result4"]').get_attribute("name")
+            suskcs = self.driver.find_element_by_xpath('//android.view.View[@resource-id="result5"]').get_attribute("name")
+            # 点击返回键，返回到个税计算器页面，调用android按键的返回键KEYCODE_BACK，keycode为4 。
+            self.driver.press_keycode(4)
+            # 等待公积金输入框加载完成。
+            WebDriverWait(self.driver, 10, poll_frequency=0.5).until(EC.presence_of_element_located((By.NAME, "计算")))
+            return yingnse, shuih, yingnssde, shuil, suskcs
+
+
+# 个税计算器标准
+def gesjs_biaozhun(shuiqian, shebao, gongjijin, qizhengdian):
+    shuil = 1
+    suskcs = 0
+    yingnssde = shuiqian - shebao - gongjijin - qizhengdian
+    if yingnssde <= 0:
+        return '无需缴纳个税'
+    else:
+        if 0 < yingnssde <= 1500:
+            shuil = 0.03
+            suskcs = 0
+        elif 1500 < yingnssde <= 4500:
+            shuil = 0.1
+            suskcs = 105
+        elif 4500 < yingnssde <= 9000:
+            shuil = 0.2
+            suskcs = 555
+        elif 9000 < yingnssde <= 35000:
+            shuil = 0.25
+            suskcs = 1005
+        elif 35000 < yingnssde <= 55000:
+            shuil = 0.3
+            suskcs = 2755
+        elif 55000 < yingnssde <= 80000:
+            shuil = 0.35
+            suskcs = 5505
+        elif yingnssde > 80000:
+            shuil = 0.45
+            suskcs = 13505
+        yingnse = yingnssde * shuil - suskcs
+        shuih = shuiqian - yingnse - shebao - gongjijin
+        return str('%.2f' % round(yingnse, 2)), str('%.2f' % round(shuih, 2)), str('%.2f' % round(yingnssde, 2)), str(int(shuil * 100)), str(suskcs)
+
+
